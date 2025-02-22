@@ -10,6 +10,21 @@ public class Pessoa {
     private String email;
     private StatusCivilEnum statusCivil;
 
+    public Pessoa(
+            String cpf,
+            String nome,
+            LocalDate dataNascimento,
+            String telefone,
+            String email,
+            StatusCivilEnum statusCivil){
+        this.cpf = cpf;
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.email = email;
+        this.statusCivil = statusCivil;
+    }
+
     public String getCpf() {
         return this.cpf;
     }
