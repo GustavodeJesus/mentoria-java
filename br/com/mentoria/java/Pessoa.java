@@ -16,7 +16,7 @@ public class Pessoa {
             LocalDate dataNascimento,
             String telefone,
             String email,
-            StatusCivilEnum statusCivil){
+            StatusCivilEnum statusCivil) {
         this.cpf = cpf;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -63,5 +63,13 @@ public class Pessoa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public StatusCivilEnum getStatusCivil() {
+        return statusCivil;
+    }
+
+    public void setStatusCivil(StatusCivilEnum statusCivil) {
+        this.statusCivil = statusCivil;
     }
 }
