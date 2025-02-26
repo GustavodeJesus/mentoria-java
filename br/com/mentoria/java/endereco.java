@@ -95,5 +95,8 @@ public class Endereco{
         this.cep = cep;
     }
 
+    //Método toString() para exibição formatada do endereço.
+    //Criar um método formatarEndereco() para exibição padronizada.
+    //Garantir que nenhum campo obrigatório esteja vazio.
 
 }
