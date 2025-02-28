@@ -1,6 +1,6 @@
 package br.com.mentoria.java; // questionar o porque precisa incluir essa linha
 
-public class Endereco{
+public class Endereco {
 
     private String logradouro;
     private String numero;
@@ -95,8 +95,20 @@ public class Endereco{
         this.cep = cep;
     }
 
-    //Método toString() para exibição formatada do endereço.
-    //Criar um método formatarEndereco() para exibição padronizada.
+    @Override
+    public String toString() {
+
+        return String.format("Endereço: %s, %s, %s - %s - CEP: %s - %s - %s - %s", logradouro, numero,
+                complemento, bairro, cep, cidade, pais, estado);
+    }
+
+
+    public String formatarEndereco(){
+
+        return String.format("Endereço: %s, %s, %s - %s - CEP: %s - %s - %s - %s", logradouro, numero,
+                complemento, bairro, cep, cidade, pais, estado);
+    }
+    
     //Garantir que nenhum campo obrigatório esteja vazio.
 
 }
