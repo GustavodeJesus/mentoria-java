@@ -2,20 +2,46 @@ package br.com.mentoria.java;
 
 public class FormaDePagamento {
 
-    private String tipodepagamento;
+    private TiposDePagamentos tipo;
     private int numeroMaximoParcelas;
     private String bandeira;
 
-    public String getTipodepagamento() {
-        return tipodepagamento;
+    public FormaDePagamento(
+            TiposDePagamentos tipo,
+            int numeroMaximoParcelas,
+            String bandeira) {
+        this.tipo = tipo;
+        this.numeroMaximoParcelas = numeroMaximoParcelas;
+        this.bandeira = bandeira;
     }
 
-    public void setTipodepagamento(String tipodepagamento) {
-        this.tipodepagamento = tipodepagamento;
+    public boolean validarParcelamento(int parcelas) {
+
+        int MIN_PARCELAS = 1;
+        int MAX_PARCELAS = 24;
+
+        if (parcelas >= MIN_PARCELAS && parcelas <= MAX_PARCELAS) {
+            System.out.println(parcelas + " é um valor válido de parcelas");
+            return true;
+
+        } else {
+            System.out.println(parcelas + " não é um valor válido de parcelas");
+            return false;
+
+        }
+    }
+
+
+    public TiposDePagamentos getTipo() {
+        return this.tipo;
+    }
+
+    public void setTipo(TiposDePagamentos tipo) {
+        this.tipo = tipo;
     }
 
     public int getNumeroMaximoParcelas() {
-        return numeroMaximoParcelas;
+        return this.numeroMaximoParcelas;
     }
 
     public void setNumeroMaximoParcelas(int numeroMaximoParcelas) {
@@ -23,7 +49,7 @@ public class FormaDePagamento {
     }
 
     public String getBandeira() {
-        return bandeira;
+        return this.bandeira;
     }
 
     public void setBandeira(String bandeira) {
