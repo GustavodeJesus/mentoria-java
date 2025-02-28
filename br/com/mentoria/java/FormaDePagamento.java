@@ -5,20 +5,16 @@ public class FormaDePagamento {
     private TiposDePagamentos tipo;
     private int numeroMaximoParcelas;
     private String bandeira;
+    private final int MIN_PARCELAS = 1;
+    private final int MAX_PARCELAS = 24;
 
-    public FormaDePagamento(
-            TiposDePagamentos tipo,
-            int numeroMaximoParcelas,
-            String bandeira) {
+    public FormaDePagamento(TiposDePagamentos tipo, int numeroMaximoParcelas, String bandeira) {
         this.tipo = tipo;
         this.numeroMaximoParcelas = numeroMaximoParcelas;
         this.bandeira = bandeira;
     }
 
     public boolean validarParcelamento(int parcelas) {
-
-        int MIN_PARCELAS = 1;
-        int MAX_PARCELAS = 24;
 
         if (parcelas >= MIN_PARCELAS && parcelas <= MAX_PARCELAS) {
             System.out.println(parcelas + " é um valor válido de parcelas");
