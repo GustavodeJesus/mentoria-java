@@ -108,7 +108,7 @@ public class Endereco {
         return String.format("Endereço: %s, %s, %s - %s - CEP: %s - %s - %s - %s", logradouro, numero,
                 complemento, bairro, cep, cidade, pais, estado);
     }
-    
+
     //Garantir que nenhum campo obrigatório esteja vazio.
 
 }
