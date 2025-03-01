@@ -38,4 +38,20 @@ public class CupomDeDesconto {
         this.porcentagem = porcentagem;
     }
 
+    public BigDecimal getValorMinimo(){
+        return this.valorMinimo;
+    }
+
+    public void setValorMinimo(BigDecimal valorMinimo){
+        this.valorMinimo = valorMinimo;
+    }
+
+    public LocalDate getDataValidade(){
+        return this.dataValidade;
+    }
+
+    public void setDataValidade(LocalDate dataValidade){
+        this.dataValidade = dataValidade;
+    }
 }
+
