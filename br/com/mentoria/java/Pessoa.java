@@ -86,6 +86,7 @@ public class Pessoa {
     }
 
 
+
     @Override
     public boolean equals(Object cpf) {
         if(this == cpf) return true;
