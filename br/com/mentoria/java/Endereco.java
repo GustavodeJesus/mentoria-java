@@ -1,4 +1,4 @@
-package br.com.mentoria.java; // questionar o porque precisa incluir essa linha
+package br.com.mentoria.java;
 
 public class Endereco {
 
@@ -108,7 +108,5 @@ public class Endereco {
         return String.format("Endereço: %s, %s, %s - %s - CEP: %s - %s - %s - %s", logradouro, numero,
                 complemento, bairro, cep, cidade, pais, estado);
     }
-
-    //Garantir que nenhum campo obrigatório esteja vazio.
 
 }
