@@ -1,6 +1,7 @@
 package br.com.mentoria.java;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Pessoa {
     private String cpf;
@@ -71,5 +72,18 @@ public class Pessoa {
 
     public void setStatusCivil(StatusCivilEnum statusCivil) {
         this.statusCivil = statusCivil;
+    }
+
+    @Override
+    public boolean equals(Object cpf) {
+        if(this == cpf) return true;
+        if (cpf == null || getClass() != cpf.getClass()) return false;
+        Pessoa pessoa = (Pessoa) cpf;
+        return Objects.equals(cpf, pessoa.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(cpf);
     }
 }
