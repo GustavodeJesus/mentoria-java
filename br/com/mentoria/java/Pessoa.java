@@ -74,6 +74,7 @@ public class Pessoa {
         this.statusCivil = statusCivil;
     }
 
+    
     @Override
     public boolean equals(Object cpf) {
         if(this == cpf) return true;
