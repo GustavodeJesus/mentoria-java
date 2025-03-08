@@ -20,7 +20,7 @@ public class Cliente {
         this.dataCadastro = dataCadastro;
     }
 
-    public void registrarPedido(){
+    public void atualizarNumeroDePedidos(){
         numeroPedidos++;
     }
 
