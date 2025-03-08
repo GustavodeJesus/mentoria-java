@@ -33,11 +33,11 @@ public class Entrega {
         this.nomeTransportadora = nomeTransportadora;
     }
 
-    public String getValorFrete() {
+    public BigDecimal getValorFrete() {
         return this.valorFrete;
     }
 
-    public void setValorFrete(String valorFrete) {
+    public void setValorFrete(BigDecimal valorFrete) {
         this.valorFrete = valorFrete;
     }
 }
