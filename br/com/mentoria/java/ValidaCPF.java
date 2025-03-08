@@ -1,37 +1,34 @@
 package br.com.mentoria.java;
 
-import java.sql.SQLOutput;
-
 public class ValidaCPF {
-    public String removerCaracteresNaoNumericos (String cpf){
+    public String removerCaracteresNaoNumericos(String cpf) {
         String cpfSemCaracteresNaoNumericos = cpf.replace(".", "").replace("-", "");
         return cpfSemCaracteresNaoNumericos;
     }
 
-    public boolean validaTamanhoCPF(String cpf){
-        if (cpf.length() != 11){
+    public boolean validaTamanhoCPF(String cpf) {
+        if (cpf.length() != 11) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
 
-    public boolean validaDigitosIguais(String cpf){
-        for (int i = 1; i <= cpf.length(); i++){
-            if (i == 11){
-                if (cpf.charAt(i-2) != cpf.charAt(i-1)){
+    public boolean validaDigitosIguais(String cpf) {
+        for (int i = 1; i <= cpf.length(); i++) {
+            if (i == 11) {
+                if (cpf.charAt(i - 2) != cpf.charAt(i - 1)) {
                     return true;
                 }
             }
-            if (cpf.charAt(i-1) != cpf.charAt(i)){
+            if (cpf.charAt(i - 1) != cpf.charAt(i)) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean validaDigitos(String cpfSemCaracteresNaoNumericos){
+    public boolean validaDigitos(String cpfSemCaracteresNaoNumericos) {
 
         char digitoUm;
         char digitoDois;
@@ -121,9 +118,9 @@ public class ValidaCPF {
                 somaTodosDois = somaTodosDois;
             }
         }
-        if(digitoDezNumerico == somaTodos && digitoOnzeNumerico == somaTodosDois){
+        if (digitoDezNumerico == somaTodos && digitoOnzeNumerico == somaTodosDois) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
