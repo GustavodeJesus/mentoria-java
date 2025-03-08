@@ -22,7 +22,7 @@ public class Pessoa {
             StatusCivilEnum statusCivil) {
         this.cpf = cpf;
         this.nome = nome;
-        this.endereco;
+        this.endereco = endereco;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
         this.email = email;
