@@ -1,5 +1,5 @@
 package br.com.mentoria.java;
-
+import java.util.UUID;
 import java.time.LocalDate;
 
 public class Cliente {
@@ -14,7 +14,7 @@ public class Cliente {
             int numeroPedidos,
             boolean possuiRestricoes,
             LocalDate dataCadastro){
-        this.codigoCliente = codigoCliente;
+        this.codigoCliente = UUID.randomUUID().toString();
         this.numeroPedidos = numeroPedidos;
         this.possuiRestricoes = possuiRestricoes;
         this.dataCadastro = dataCadastro;
