@@ -20,12 +20,12 @@ public class Cliente {
         this.dataCadastro = dataCadastro;
     }
 
-    public String getCodigoCliente() {
-        return this.codigoCliente;
+    public void registrarPedido(){
+        numeroPedidos++;
     }
 
-    public void setCodigoCliente(String codigoCliente) {
-        this.codigoCliente = codigoCliente;
+    public String getCodigoCliente() {
+        return this.codigoCliente;
     }
 
     public int getNumeroPedidos() {
