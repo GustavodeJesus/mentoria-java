@@ -8,6 +8,7 @@ public class Vendedor extends Pessoa {
 
     public Vendedor(String cpf,
                     String nome,
+                    Endereco endereco,
                     LocalDate dataNascimento,
                     String telefone,
                     String email,
@@ -16,6 +17,7 @@ public class Vendedor extends Pessoa {
                     String codigoVendedor) {
         super(cpf,
                 nome,
+                endereco,
                 dataNascimento,
                 telefone,
                 email,
