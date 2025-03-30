@@ -63,7 +63,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                br.com.mentoria.java/br.com.mentoria.java.HelloApplication
+                                br.com.mentoria.java/br.com.mentoria.java.PedidoApp
                             </mainClass>
                             <jvmArgs>
                                 <jvmArg>-Dglass.macosx.nsapplication.enabled=false</jvmArg>
