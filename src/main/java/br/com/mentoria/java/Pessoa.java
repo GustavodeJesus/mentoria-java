@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Pessoa {
     private String cpf;
     private String nome;
-    private Endereco endereco;
+    private br.com.mentoria.java.Endereco endereco;
     private LocalDate dataNascimento;
     private String telefone;
     private String email;
@@ -15,7 +15,7 @@ public class Pessoa {
     public Pessoa(
             String cpf,
             String nome,
-            Endereco endereco,
+            br.com.mentoria.java.Endereco endereco,
             LocalDate dataNascimento,
             String telefone,
             String email,
@@ -77,7 +77,7 @@ public class Pessoa {
         this.statusCivil = statusCivil;
     }
 
-    public Endereco getEndereco() {
+    public br.com.mentoria.java.Endereco getEndereco() {
         return this.endereco;
     }
 

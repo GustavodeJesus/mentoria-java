@@ -1,6 +1,7 @@
 package br.com.mentoria.java;
-import java.util.UUID;
+
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Cliente {
 
