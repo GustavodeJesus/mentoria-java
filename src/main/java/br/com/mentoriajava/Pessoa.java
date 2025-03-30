@@ -1,4 +1,4 @@
-package br.com.mentoria.java;
+package br.com.mentoriajava;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Pessoa {
     private String cpf;
     private String nome;
-    private br.com.mentoria.java.Endereco endereco;
+    private Endereco endereco;
     private LocalDate dataNascimento;
     private String telefone;
     private String email;
@@ -15,7 +15,7 @@ public class Pessoa {
     public Pessoa(
             String cpf,
             String nome,
-            br.com.mentoria.java.Endereco endereco,
+            Endereco endereco,
             LocalDate dataNascimento,
             String telefone,
             String email,
@@ -77,7 +77,7 @@ public class Pessoa {
         this.statusCivil = statusCivil;
     }
 
-    public br.com.mentoria.java.Endereco getEndereco() {
+    public Endereco getEndereco() {
         return this.endereco;
     }
 

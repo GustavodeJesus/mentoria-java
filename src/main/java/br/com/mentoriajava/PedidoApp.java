@@ -1,4 +1,4 @@
-package br.com.mentoria.java;
+package br.com.mentoriajava;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

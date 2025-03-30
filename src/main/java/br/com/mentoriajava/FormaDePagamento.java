@@ -1,6 +1,4 @@
-package br.com.mentoria.java;
-
-import br.com.mentoria.java.TiposDePagamentos;
+package br.com.mentoriajava;
 
 public class FormaDePagamento {
 

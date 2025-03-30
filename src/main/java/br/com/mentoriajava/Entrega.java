@@ -1,4 +1,4 @@
-package br.com.mentoria.java;
+package br.com.mentoriajava;
 
 import java.math.BigDecimal;
 

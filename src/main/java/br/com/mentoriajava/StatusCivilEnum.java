@@ -1,4 +1,4 @@
-package br.com.mentoria.java;
+package br.com.mentoriajava;
 
 public enum StatusCivilEnum {
     SOLTEIRO,

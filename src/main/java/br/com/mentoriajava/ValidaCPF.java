@@ -1,4 +1,4 @@
-package br.com.mentoria.java;
+package br.com.mentoriajava;
 
 public class ValidaCPF {
     public String removerCaracteresNaoNumericos(String cpf) {
