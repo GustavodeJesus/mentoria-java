@@ -12,6 +12,8 @@ public class Pessoa {
     private String email;
     private StatusCivilEnum statusCivil;
 
+    public Pessoa(){};
+
     public Pessoa(
             String cpf,
             String nome,

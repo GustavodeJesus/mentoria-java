@@ -11,6 +11,8 @@ public class Endereco {
     private String cidade;
     private String cep;
 
+    public Endereco(){}
+
     public Endereco(
             String logradouro,
             String numero,

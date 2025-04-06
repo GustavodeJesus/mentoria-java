@@ -67,10 +67,62 @@ public class PedidoApp extends Application {
         Button button = new Button("Enviar");
         button.setOnAction(event -> {
 //           Cliente cliente = new Cliente();
-//           cliente.setCpf(cpfTextField);
+//           cliente.setCpf(cpfTextField.getText());
+//           cliente.setNome(nomeTextField.getText());
+//           Endereco endereco = new Endereco();
+//           endereco.setLogradouro(logradouroTextField.getText());
+//           endereco.setNumero(numeroTextField.getText());
+//           endereco.setComplemento(complementoTextField.getText());
+//           endereco.setBairro(bairroTextField.getText());
+//           endereco.setPais(paisTextField.getText());
+//           endereco.setEstado(estadoTextField.getText());
+//           endereco.setCidade(cidadeTextField.getText());
+//           endereco.setCep(cepTextField.getText());
+//           cliente.setEndereco(endereco);
+//           cliente.setDataNascimento(dataNascimentoDatePicker.getValue());
+//           cliente.setTelefone(telefoneTextField.getText());
+//           cliente.setEmail(emailTextField.getText());
+//           cliente.setStatusCivil(StatusCivilEnum.SOLTEIRO);
+//           cliente.setNumeroPedidos(0);
 
+            Endereco endereco1 = new Endereco(
+                    logradouroTextField.getText(),
+                    numeroTextField.getText(),
+                    complementoTextField.getText(),
+                    bairroTextField.getText(),
+                    paisTextField.getText(),
+                    estadoTextField.getText(),
+                    cidadeTextField.getText(),
+                    cepTextField.getText()
+            );
+            Cliente cliente1 = new Cliente(
+                    cpfTextField.getText(),
+                    nomeTextField.getText(),
+                    endereco1,
+                    dataNascimentoDatePicker.getValue(),
+                    telefoneTextField.getText(),
+                    emailTextField.getText(),
+                    StatusCivilEnum.SOLTEIRO,
+                    0
+            );
 
-            dadosCadastrados.setText(nomeTextField.getText() + cpfTextField.getText());
+            dadosCadastrados.setText(
+                    cliente1.getCpf() + "\n" +
+                            cliente1.getNome() + "\n" +
+                            cliente1.getEndereco().getLogradouro() + "\n" +
+                            cliente1.getEndereco().getNumero() + "\n" +
+                            cliente1.getEndereco().getComplemento() + "\n" +
+                            cliente1.getEndereco().getBairro() + "\n" +
+                            cliente1.getEndereco().getPais() + "\n" +
+                            cliente1.getEndereco().getEstado() + "\n" +
+                            cliente1.getEndereco().getCidade() + "\n" +
+                            cliente1.getEndereco().getCep()+ "\n" +
+                            cliente1.getDataNascimento().toString()+ "\n" +
+                            cliente1.getTelefone()+ "\n" +
+                            cliente1.getEmail()+ "\n" +
+                            cliente1.getStatusCivil().name()+ "\n" +
+                            cliente1.getNumeroPedidos()
+            );
             button.setText("Enviado");
         });
 

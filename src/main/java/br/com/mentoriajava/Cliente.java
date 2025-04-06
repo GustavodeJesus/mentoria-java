@@ -5,10 +5,16 @@ import java.util.UUID;
 
 public class Cliente extends Pessoa{
 
-    private String codigoCliente;
+    private final String codigoCliente;
     private int numeroPedidos;
     private boolean possuiRestricoes;
     private final LocalDate dataCadastro;
+
+    public Cliente (){
+        super();
+        this.dataCadastro = LocalDate.now();
+        this.codigoCliente = UUID.randomUUID().toString();
+    }
 
     public Cliente(
             String cpf,
