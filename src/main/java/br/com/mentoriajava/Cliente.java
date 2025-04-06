@@ -3,7 +3,7 @@ package br.com.mentoriajava;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class Cliente {
+public class Cliente extends Pessoa{
 
     private String codigoCliente;
     private int numeroPedidos;
@@ -11,14 +11,20 @@ public class Cliente {
     private final LocalDate dataCadastro;
 
     public Cliente(
-            String codigoCliente,
-            int numeroPedidos,
-            boolean possuiRestricoes,
-            LocalDate dataCadastro){
+            String cpf,
+            String nome,
+            Endereco endereco,
+            LocalDate dataNascimento,
+            String telefone,
+            String email,
+            StatusCivilEnum statusCivil,
+            int numeroPedidos
+    ){
+        super(cpf, nome, endereco, dataNascimento, telefone, email, statusCivil);
         this.codigoCliente = UUID.randomUUID().toString();
         this.numeroPedidos = numeroPedidos;
-        this.possuiRestricoes = possuiRestricoes;
-        this.dataCadastro = dataCadastro;
+        this.possuiRestricoes = false;
+        this.dataCadastro = LocalDate.now();
     }
 
     public void atualizarNumeroDePedidos(){
