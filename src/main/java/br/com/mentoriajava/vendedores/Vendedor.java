@@ -1,4 +1,8 @@
-package br.com.mentoriajava;
+package br.com.mentoriajava.vendedores;
+
+import br.com.mentoriajava.base.Endereco;
+import br.com.mentoriajava.base.Pessoa;
+import br.com.mentoriajava.clientes.StatusCivilEnum;
 
 import java.time.LocalDate;
 

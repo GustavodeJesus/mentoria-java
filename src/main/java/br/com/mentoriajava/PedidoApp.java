@@ -1,5 +1,8 @@
 package br.com.mentoriajava;
 
+import br.com.mentoriajava.base.Endereco;
+import br.com.mentoriajava.clientes.Cliente;
+import br.com.mentoriajava.clientes.StatusCivilEnum;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -116,11 +119,11 @@ public class PedidoApp extends Application {
                             cliente1.getEndereco().getPais() + "\n" +
                             cliente1.getEndereco().getEstado() + "\n" +
                             cliente1.getEndereco().getCidade() + "\n" +
-                            cliente1.getEndereco().getCep()+ "\n" +
-                            cliente1.getDataNascimento().toString()+ "\n" +
-                            cliente1.getTelefone()+ "\n" +
-                            cliente1.getEmail()+ "\n" +
-                            cliente1.getStatusCivil().name()+ "\n" +
+                            cliente1.getEndereco().getCep() + "\n" +
+                            cliente1.getDataNascimento().toString() + "\n" +
+                            cliente1.getTelefone() + "\n" +
+                            cliente1.getEmail() + "\n" +
+                            cliente1.getStatusCivil().name() + "\n" +
                             cliente1.getNumeroPedidos()
             );
             button.setText("Enviado");

@@ -1,4 +1,4 @@
-package br.com.mentoriajava;
+package br.com.mentoriajava.formaspagamento;
 
 public enum TiposDePagamentos {
 

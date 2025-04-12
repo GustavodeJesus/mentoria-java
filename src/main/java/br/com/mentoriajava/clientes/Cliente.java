@@ -1,9 +1,12 @@
-package br.com.mentoriajava;
+package br.com.mentoriajava.clientes;
+
+import br.com.mentoriajava.base.Endereco;
+import br.com.mentoriajava.base.Pessoa;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa {
 
     private final String codigoCliente;
     private int numeroPedidos;

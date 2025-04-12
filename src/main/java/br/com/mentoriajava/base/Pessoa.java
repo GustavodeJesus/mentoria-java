@@ -1,4 +1,6 @@
-package br.com.mentoriajava;
+package br.com.mentoriajava.base;
+
+import br.com.mentoriajava.clientes.StatusCivilEnum;
 
 import java.time.LocalDate;
 import java.util.Objects;
