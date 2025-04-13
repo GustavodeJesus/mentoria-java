@@ -2,7 +2,7 @@ package br.com.mentoriajava.home;
 
 import br.com.mentoriajava.clientes.ClientesScreen;
 import br.com.mentoriajava.cupons.CuponsScreen;
-import br.com.mentoriajava.exemplo.ExemploScreen;
+import br.com.mentoriajava.exemplo.PetScreen;
 import br.com.mentoriajava.formaspagamento.FormaPagamentoScreen;
 import br.com.mentoriajava.pedido.PedidosScreen;
 import br.com.mentoriajava.produtos.ProdutosScreen;
@@ -50,7 +50,7 @@ public class HomeApp extends Application {
         ToggleButton btnPedidos = createSidebarItem("Pedido", "icons/pedidos.png", new PedidosScreen());
         ToggleButton btnVendedores = createSidebarItem("Vendedores", "icons/vendedores.png", new VendedoresScreen());
         ToggleButton btnProdutos = createSidebarItem("Produtos", "icons/produtos.png", new ProdutosScreen());
-        ToggleButton btnExemplo = createSidebarItem("Exemplo", "icons/info.png", new ExemploScreen());
+        ToggleButton btnExemplo = createSidebarItem("Exemplo", "icons/info.png", new PetScreen());
 
         ToggleButton[] buttons = {
                 btnClientes, btnCupons, btnFormaPagamento, btnPedidos, btnVendedores, btnProdutos, btnExemplo
