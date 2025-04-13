@@ -10,7 +10,7 @@ Este projeto foi desenvolvido como parte de uma **mentoria Java** para um grupo 
 
 ## 🚀 Fluxo de Trabalho com Git
 
-> ⚠️ **Nunca use `git checkout` e `git push origin` no mesmo comando!**
+⚠️ **Nunca use `git checkout` e `git push origin` no mesmo comando!**
 
 ### 📌 Criando uma nova branch de tarefa
 
