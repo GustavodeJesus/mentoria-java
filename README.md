@@ -88,7 +88,3 @@ mvn clean install
 # 3. Execute a aplicação
 mvn javafx:run
 ```
-
----
-
-Se quiser, posso te ajudar a gerar um `.jar`, criar o `jpackage` ou montar `.msi` para distribuição desktop. Deseja isso também?
