@@ -1,4 +1,4 @@
-package br.com.mentoria.java;
+package br.com.mentoriajava.base;
 
 public class Endereco {
 
@@ -10,6 +10,8 @@ public class Endereco {
     private String estado;
     private String cidade;
     private String cep;
+
+    public Endereco(){}
 
     public Endereco(
             String logradouro,

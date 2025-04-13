@@ -1,23 +1,39 @@
-package br.com.mentoria.java;
-import java.util.UUID;
+package br.com.mentoriajava.clientes;
+
+import br.com.mentoriajava.base.Endereco;
+import br.com.mentoriajava.base.Pessoa;
+
 import java.time.LocalDate;
+import java.util.UUID;
 
-public class Cliente {
+public class Cliente extends Pessoa {
 
-    private String codigoCliente;
+    private final String codigoCliente;
     private int numeroPedidos;
     private boolean possuiRestricoes;
     private final LocalDate dataCadastro;
 
+    public Cliente (){
+        super();
+        this.dataCadastro = LocalDate.now();
+        this.codigoCliente = UUID.randomUUID().toString();
+    }
+
     public Cliente(
-            String codigoCliente,
-            int numeroPedidos,
-            boolean possuiRestricoes,
-            LocalDate dataCadastro){
+            String cpf,
+            String nome,
+            Endereco endereco,
+            LocalDate dataNascimento,
+            String telefone,
+            String email,
+            StatusCivilEnum statusCivil,
+            int numeroPedidos
+    ){
+        super(cpf, nome, endereco, dataNascimento, telefone, email, statusCivil);
         this.codigoCliente = UUID.randomUUID().toString();
         this.numeroPedidos = numeroPedidos;
-        this.possuiRestricoes = possuiRestricoes;
-        this.dataCadastro = dataCadastro;
+        this.possuiRestricoes = false;
+        this.dataCadastro = LocalDate.now();
     }
 
     public void atualizarNumeroDePedidos(){

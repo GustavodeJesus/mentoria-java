@@ -1,4 +1,6 @@
-package br.com.mentoria.java;
+package br.com.mentoriajava.pedido;
+
+import br.com.mentoriajava.base.Endereco;
 
 import java.math.BigDecimal;
 

@@ -1,4 +1,4 @@
-package br.com.mentoria.java;
+package br.com.mentoriajava.base;
 
 public class ValidarCamposObrigatorios {
 

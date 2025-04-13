@@ -4,3 +4,9 @@
 *.iml
 out/
 /out/
+tools
+/tools
+.DS_Store
+*.DS_Store
+target
+/target

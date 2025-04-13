@@ -1,4 +1,6 @@
-package br.com.mentoria.java;
+package br.com.mentoriajava.base;
+
+import br.com.mentoriajava.clientes.StatusCivilEnum;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -11,6 +13,8 @@ public class Pessoa {
     private String telefone;
     private String email;
     private StatusCivilEnum statusCivil;
+
+    public Pessoa(){};
 
     public Pessoa(
             String cpf,
