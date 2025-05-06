@@ -18,16 +18,16 @@ public class Produto {
     }
 
     //CONSTRUTOR
-     public Produto (String _nomeProduto, String _categoriaProduto, Double _precoProduto, long _estoqueProduto)
+     public Produto (String nomeProduto, String categoriaProduto, Double precoProduto, long estoqueProduto)
      {
          this.codigoProduto = UUID.randomUUID().toString();
-         this.nomeProduto = _nomeProduto;
-         this.categoriaProduto = _categoriaProduto;
-         this.precoProduto = _precoProduto;
-         this.estoqueProduto = _estoqueProduto;
+         this.nomeProduto = nomeProduto;
+         this.categoriaProduto = categoriaProduto;
+         this.precoProduto = precoProduto;
+         this.estoqueProduto = estoqueProduto;
      }
 
-     //MTODOS
+     //MÉTODOS
 
     public String getCodigoProduto(){
         return this.codigoProduto;
@@ -37,32 +37,32 @@ public class Produto {
         return this.nomeProduto;
     }
 
-    public void setNomeProduto (String _nomeProduto){
-        this.nomeProduto = _nomeProduto;
+    public void setNomeProduto (String nomeProduto){
+        this.nomeProduto = nomeProduto;
     }
 
     public String getCategoriaProduto(){
         return this.categoriaProduto;
     }
 
-    public void setCategoriaProduto (String _categoriaProduto){
-        this.categoriaProduto = _categoriaProduto;
+    public void setCategoriaProduto (String categoriaProduto){
+        this.categoriaProduto = categoriaProduto;
     }
 
     public Double getPrecoProduto () {
         return this.precoProduto;
     }
 
-    public void setPrecoProduto(Double _precoProduto){
-        this.precoProduto = _precoProduto;
+    public void setPrecoProduto(Double precoProduto){
+        this.precoProduto = precoProduto;
     }
 
     public long getEstoqueProduto () {
         return this.estoqueProduto;
     }
 
-    public void setEstoqueProduto(long _estoqueProduto) {
-        this.estoqueProduto = _estoqueProduto;
+    public void setEstoqueProduto(long estoqueProduto) {
+        this.estoqueProduto = estoqueProduto;
     }
 
 }
