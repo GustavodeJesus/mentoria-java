@@ -3,7 +3,7 @@ package br.com.mentoriajava.cupons;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class CupomDeDesconto {
+public class Cupom {
 
     private String codigo;
     private BigDecimal porcentagem;
@@ -11,10 +11,10 @@ public class CupomDeDesconto {
     private LocalDate dataValidade;
 
 
-    public CupomDeDesconto(String codigo,
-                           BigDecimal porcentagem,
-                           BigDecimal valorMinimo,
-                           LocalDate dataValidade) {
+    public Cupom(String codigo,
+                 BigDecimal porcentagem,
+                 BigDecimal valorMinimo,
+                 LocalDate dataValidade) {
         this.codigo = codigo;
         this.porcentagem = porcentagem;
         this.valorMinimo = valorMinimo;
