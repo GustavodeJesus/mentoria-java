@@ -192,7 +192,7 @@ public class PetScreen extends VBox {
     private VBox construirTabela() {
         VBox caixaTabela = new VBox(10);
         caixaTabela.setStyle("-fx-background-color: #f1f5f9; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8;");
-        caixaTabela.setPadding(new Insets(15));
+        caixaTabela.setPadding(new Insets(5));
 
         configurarTabela();
         adicionarColunasTabela();
