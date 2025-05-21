@@ -26,12 +26,12 @@ public class VendedorDataSource {
                             "Minas Gerais",
                             "Uberlândia",
                             "38412000"),
-                            LocalDate.of(2000, 2, 7),
-                            "34997564865",
-                            "carlinhodev@hotmail.com",
-                            StatusCivilEnum.DIVORCIADO,
-                            "Vendas",
-                            "24240123"),
+                    LocalDate.of(2000, 2, 7),
+                    "34997564865",
+                    "carlinhodev@hotmail.com",
+                    StatusCivilEnum.DIVORCIADO,
+                    "Vendas",
+                    "24240123"),
 
             new Vendedor(
                     "12345678909",
@@ -45,12 +45,12 @@ public class VendedorDataSource {
                             "Minas Gerais",
                             "Uberlandia",
                             "38743564"),
-                            LocalDate .of(1995, 5, 7),
-                            "34985621540",
-                            "felixpnoronha@gmail.com",
-                            StatusCivilEnum.CASADO,
-                            "Vendas",
-                            "45870203"),
+                    LocalDate .of(1995, 5, 7),
+                    "34985621540",
+                    "felixpnoronha@gmail.com",
+                    StatusCivilEnum.CASADO,
+                    "Vendas",
+                    "45870203"),
             new Vendedor(
                     "98765432100",
                     "Ana Clara Mendonça",
@@ -63,12 +63,12 @@ public class VendedorDataSource {
                             "Minas Gerais",
                             "Uberlandia",
                             "38412547"),
-                            LocalDate .of(2003, 11, 27),
-                            "34997875645",
-                            "anacmendo342@outlook.com",
-                            StatusCivilEnum.SOLTEIRO,
-                            "Vendas",
-                            "45127899")
+                    LocalDate .of(2003, 11, 27),
+                    "34997875645",
+                    "anacmendo342@outlook.com",
+                    StatusCivilEnum.SOLTEIRO,
+                    "Vendas",
+                    "45127899")
     );
 
     private VendedorDataSource(){
