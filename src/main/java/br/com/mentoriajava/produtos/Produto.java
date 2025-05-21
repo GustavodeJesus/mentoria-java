@@ -7,7 +7,7 @@ public class Produto {
     //atributos
     private final String codigoProduto;
     private String nomeProduto;
-    private String categoriaProduto;
+    private ProdutoCategoria categoria;
     private Double precoProduto;
     private long estoqueProduto;
 
@@ -18,11 +18,11 @@ public class Produto {
     }
 
     //CONSTRUTOR
-     public Produto (String nomeProduto, String categoriaProduto, Double precoProduto, long estoqueProduto)
+     public Produto (String nomeProduto, ProdutoCategoria categoria, Double precoProduto, long estoqueProduto)
      {
          this.codigoProduto = UUID.randomUUID().toString();
          this.nomeProduto = nomeProduto;
-         this.categoriaProduto = categoriaProduto;
+         this.categoria = categoria;
          this.precoProduto = precoProduto;
          this.estoqueProduto = estoqueProduto;
      }
@@ -41,12 +41,12 @@ public class Produto {
         this.nomeProduto = nomeProduto;
     }
 
-    public String getCategoriaProduto(){
-        return this.categoriaProduto;
+    public ProdutoCategoria getCategoriaProduto(){
+        return this.categoria;
     }
 
-    public void setCategoriaProduto (String categoriaProduto){
-        this.categoriaProduto = categoriaProduto;
+    public void setCategoriaProduto (ProdutoCategoria categoriaProduto){
+        this.categoria = categoriaProduto;
     }
 
     public Double getPrecoProduto () {
