@@ -81,6 +81,11 @@ public class VendedorDataSource {
     public ObservableList<Vendedor> getListaVendedores() {
         return listaVendedores;
     }
+
+    public void adicionarVendedor(Vendedor vendedor){
+    listaVendedores.add(vendedor);
+    }
+
     public void removerVendedor(Vendedor vendedor){
         listaVendedores.remove(vendedor);
     }
