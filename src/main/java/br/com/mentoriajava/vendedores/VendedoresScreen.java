@@ -1,5 +1,6 @@
 package br.com.mentoriajava.vendedores;
 
+import br.com.mentoriajava.base.Endereco;
 import br.com.mentoriajava.clientes.StatusCivilEnum;
 import br.com.mentoriajava.database.VendedorDataSource;
 import javafx.geometry.Insets;
@@ -192,7 +193,6 @@ public class VendedoresScreen extends VBox {
         String nome = campoNome.getText();
         String cpf = campoCpf.getText();
         String telefone = campoTelefone.getText();
-
         String logradouro = campoLogradouro.getText();
         String numero = campoNumero.getText();
         String complemento = campoComplemento.getText();
@@ -205,8 +205,8 @@ public class VendedoresScreen extends VBox {
         StatusCivilEnum statusCivil = comboStatusCivil.getValue();
         StatusVendedorEnum status = comboStatusVendedor.getValue();
         LocalDate nascimento = campoDataNascimento.getValue();
-//        String setor = campoSetor.getText();
-//        String codigoVendedor = campoCodigoVendedor.getText();
+        String setor = campoSetor.getText();
+        String codigoVendedor = campoCodigoVendedor.getText();
 
         if (nome.isEmpty() ||
                 cpf.isEmpty() ||
@@ -214,7 +214,17 @@ public class VendedoresScreen extends VBox {
                 nascimento == null ||
                 email.isEmpty() ||
                 status == null ||
-                statusCivil == null) {
+                statusCivil == null ||
+                logradouro.isEmpty() ||
+                numero == null ||
+                complemento.isEmpty() ||
+                bairro.isEmpty() ||
+                pais.isEmpty() ||
+                estado.isEmpty() ||
+                cidade.isEmpty() ||
+                cep.isEmpty() ||
+                setor.isEmpty() ||
+                codigoVendedor.isEmpty()) {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
             alerta.setTitle("Campos obrigatórios");
             alerta.setHeaderText(null);
@@ -223,7 +233,28 @@ public class VendedoresScreen extends VBox {
             return;
         }
 
+        Endereco novoEndereco = new Endereco(
+                logradouro,
+                numero,
+                complemento,
+                bairro,
+                pais,
+                estado,
+                cidade,
+                cep);
 
+        Vendedor novoVendedor = new Vendedor(
+                cpf,
+                nome,
+                novoEndereco,
+                nascimento,
+                telefone,
+                email,
+                statusCivil,
+                setor,
+                codigoVendedor);
+
+        VendedorDataSource.getInstancia().adicionarVendedor(novoVendedor);
     }
 
     private VBox construirTabela() {
@@ -231,28 +262,12 @@ public class VendedoresScreen extends VBox {
         caixaTabela.setStyle("-fx-background-color: #f1f5f9; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8;");
         caixaTabela.setPadding(new Insets(15));
 
-        configurarTabela();
+//        configurarTabela();
 
         Label titulo = new Label("Vendedores Cadastrados");
         titulo.setFont(Font.font("System", javafx.scene.text.FontWeight.BOLD, 16));
 
         caixaTabela.getChildren().addAll(titulo, tabelaVendedores);
         return caixaTabela;
-    }
-
-    private void configurarTabela() {
-        tabelaVendedores.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        tabelaVendedores.setStyle("""
-                    -fx-background-color: white;
-                    -fx-border-color: #e5e7eb;
-                    -fx-border-radius: 8;
-                    -fx-table-cell-border-color: #f3f4f6;
-                    -fx-padding: 8;
-                """);
-        tabelaVendedores.skinProperty().addListener((obs, oldSkin, newSkin) -> {
-            tabelaVendedores.lookupAll(".column-header-background").forEach(header ->
-                    header.setStyle("-fx-background-color: #e0f2fe;")
-            );
-        });
     }
 }
