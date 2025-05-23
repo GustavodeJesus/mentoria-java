@@ -71,22 +71,21 @@ public class VendedorDataSource {
                     "45127899")
     );
 
-    private VendedorDataSource(){
-    }
+    private VendedorDataSource(){}
 
     public static VendedorDataSource getInstancia(){
         return instancia;
     }
 
     public ObservableList<Vendedor> getListaVendedores() {
-        return listaVendedores;
+        return this.listaVendedores;
     }
 
     public void adicionarVendedor(Vendedor vendedor){
-    listaVendedores.add(vendedor);
+        this.listaVendedores.add(vendedor);
     }
 
     public void removerVendedor(Vendedor vendedor){
-        listaVendedores.remove(vendedor);
+        this.listaVendedores.remove(vendedor);
     }
 }
