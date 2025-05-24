@@ -1,5 +1,4 @@
 package br.com.mentoriajava.clientes;
-
 import br.com.mentoriajava.database.ClienteDataSource;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,7 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.StringConverter;
-
+import javax.swing.tree.DefaultTreeCellEditor;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -30,7 +29,14 @@ public class ClientesScreen extends VBox {
     private final TextField campoNome = new TextField();
     private final TextField campoCpf = new TextField();
     private final TextField campoTelefone = new TextField();
-    private final TextField campoEndereco = new TextField();
+    private final TextField campoLogradouro = new TextField();
+    private final TextField campoNumero = new TextField();
+    private final TextField campoComplemento = new TextField();
+    private final TextField campoBairro = new TextField();
+    private final TextField campoPais = new TextField();
+    private final TextField campoEstado = new TextField();
+    private final TextField campoCidade = new TextField();
+    private final TextField campoCEP = new TextField();
     private final DatePicker campoDataNascimento = new DatePicker();
     private final TextField campoEmail = new TextField();
     private final ComboBox<String> comboStatusCivil = new ComboBox<>();
@@ -38,7 +44,6 @@ public class ClientesScreen extends VBox {
 
     public ClientesScreen() {
         configurarLayoutPrincipal();
-        /*popularTabela();*/
     }
 
     private void configurarLayoutPrincipal() {
@@ -79,34 +84,57 @@ public class ClientesScreen extends VBox {
         grid.setAlignment(Pos.CENTER_LEFT);
 
         campoNome.setPromptText("Nome do Cliente");
-        campoNome.setPrefWidth(250);
+        campoNome.setPrefWidth(200);
         campoCpf.setPromptText("CPF");
         campoTelefone.setPromptText("Telefone");
-        campoEndereco.setPromptText("Endereco");
+        campoLogradouro.setPromptText("Logradouro");
+        campoNumero.setPromptText("Numero");
+        campoComplemento.setPromptText("Complemento");
+        campoBairro.setPromptText("Bairro");
+        campoPais.setPromptText("Pais");
+        campoEstado.setPromptText("Estado");
+        campoCidade.setPromptText("Cidade");
+        campoCEP.setPromptText("CEP");
         campoEmail.setPromptText("E-mail");
-
         campoDataNascimento.setPromptText("Data de Nascimento");
         campoDataNascimento.setConverter(criarConversorData());
-
         comboStatusCivil.getItems().addAll("Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)");
         comboStatusCivil.setPromptText("Status Civil");
 
-        grid.add(new Label("Nome:"), 0, 0);
+        grid.add(new Label("Nome:*"), 0, 0);
         grid.add(campoNome, 1, 0);
-        grid.add(new Label("CPF:"), 2, 0);
+        grid.add(new Label("CPF:*"), 2, 0);
         grid.add(campoCpf, 3, 0);
-        grid.add(new Label("Telefone:"), 4, 0);
+        grid.add(new Label("Telefone:*"), 4, 0);
         grid.add(campoTelefone, 5, 0);
-        grid.add(new Label("Endereço:"), 4, 1);
-        grid.add(campoEndereco, 5, 1);
-        grid.add(new Label("E-mail:"), 4, 1);
-        grid.add(campoEmail, 5, 1);
 
-        grid.add(new Label("Status Civil:"), 0, 1);
-        grid.add(comboStatusCivil, 1, 1);
+        grid.add(new Label("Logradouro:*"), 0, 1);
+        grid.add(campoLogradouro, 1, 1);
+        grid.add(new Label("Numero:*"), 2, 1);
+        grid.add(campoNumero, 3, 1);
+        grid.add(new Label("Complemento:*"), 4, 1);
+        grid.add(campoComplemento, 5, 1);
 
-        grid.add(new Label("Data de Nascimento:"), 2, 1);
-        grid.add(campoDataNascimento, 3, 1);
+        grid.add(new Label("Bairro:*"), 0, 2);
+        grid.add(campoBairro, 1, 2);
+        grid.add(new Label("Pais:*"), 2, 2);
+        grid.add(campoPais, 3, 2);
+        grid.add(new Label("Estado:*"), 4, 2);
+        grid.add(campoEstado, 5, 2);
+
+        grid.add(new Label("Cidade:*"), 0, 3);
+        grid.add(campoCidade, 1, 3);
+        grid.add(new Label("CEP:*"), 2, 3);
+        grid.add(campoCEP, 3, 3);
+        grid.add(new Label("E-mail:*"), 4, 3);
+        grid.add(campoEmail, 5, 3);
+
+        grid.add(new Label("Data de Nascimento:*"), 0, 5);
+        grid.add(campoDataNascimento, 1, 5);
+        grid.add(new Label("Status Civil:*"), 2, 5);
+        grid.add(comboStatusCivil, 3, 5);
+
+        grid.add(new Label("* indica campos obrigatórios"), 0, 7);
 
         return grid;
     }
@@ -138,12 +166,32 @@ public class ClientesScreen extends VBox {
         String nome = campoNome.getText();
         String cpf = campoCpf.getText();
         String telefone = campoTelefone.getText();
-        String endereco = campoEndereco.getText();
+        String logradouro = campoLogradouro.getText();
+        String numero = campoNumero.getText();
+        String complemento = campoComplemento.getText();
+        String bairro = campoBairro.getText();
+        String pais = campoPais.getText();
+        String estado = campoEstado.getText();
+        String cidade = campoCidade.getText();
+        String cep = campoCEP.getText();
         String email = campoEmail.getText();
         String status = comboStatusCivil.getValue();
         LocalDate nascimento = campoDataNascimento.getValue();
 
-        if (nome.isEmpty() || cpf.isEmpty() || telefone.isEmpty() || endereco == null || nascimento == null || email.isEmpty() || status.isEmpty()) {
+        if (nome.isEmpty() ||
+                cpf.isEmpty() ||
+                telefone.isEmpty() ||
+                logradouro == null ||
+                numero == null ||
+                complemento == null ||
+                bairro == null ||
+                pais == null ||
+                estado == null ||
+                cidade == null ||
+                cep == null ||
+                nascimento == null ||
+                email.isEmpty() ||
+                status.isEmpty()) {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
             alerta.setTitle("Campos obrigatórios");
             alerta.setHeaderText(null);
