@@ -22,7 +22,7 @@ public class ListagemVendedoresScreen extends VBox {
         setPadding(new Insets(20));
         setStyle("-fx-background-color: #ffffff;");
 
-        Label titulo = new Label("Cadastro de Pets");
+        Label titulo = new Label("Cadastro de Vendedores");
         titulo.setFont(Font.font("System", javafx.scene.text.FontWeight.BOLD, 20));
         titulo.setStyle("-fx-text-fill: #1f2937;");
 
