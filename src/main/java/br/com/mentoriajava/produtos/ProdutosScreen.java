@@ -4,18 +4,25 @@ import br.com.mentoriajava.database.ProdutoDataSource;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.StringConverter;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class ProdutosScreen extends VBox {
 
@@ -103,7 +110,7 @@ public class ProdutosScreen extends VBox {
     private Button criarBotaoCadastrar() {
         Button botaoCadastrar = new Button("Cadastrar Produto");
         botaoCadastrar.setStyle("-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-padding: 10 20; -fx-font-weight: bold; -fx-background-radius: 6;");
-        //botaoCadastrar.setOnAction(event -> cadastrarProduto()); **CRIAR METODO
+        botaoCadastrar.setOnAction(event -> cadastrarProduto());
         return botaoCadastrar;
     }
 
@@ -111,8 +118,51 @@ public class ProdutosScreen extends VBox {
     {
         String nome = campoNome.getText();
         ProdutoCategoria categoria = comboBoxCategoria.getValue();
-        Double preco = Double.parseDouble(campoPreco.getText());
-        Long estoque = Long.parseLong(campoEstoque.getText());
+        Double preco;
+        String auxPreco = campoPreco.getText().replace(".","").replace(",",".");
+
+        try {
+            preco = Double.parseDouble(auxPreco);
+        }
+        catch (NumberFormatException exception){
+            preco = null;
+        }
+        Long estoque;
+        try {
+            estoque = Long.parseLong(campoEstoque.getText());
+        }
+        catch (NumberFormatException exception)
+        {
+            estoque = null;
+        }
+
+
+        if (nome.isEmpty() || categoria == null || preco == null || estoque == null){
+
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Por favor, preencha os campos obrigatórios!");
+
+            String validacaoNome = "";
+            String validacaoCategoria = "";
+            String validacaoPreco = "";
+            String validacaoEstoque = "";
+
+            if (nome.isEmpty()) {validacaoNome = " *Nome";}
+            if (categoria == null) {validacaoCategoria = " *Categoria";}
+            if (preco == null) {validacaoPreco = " *Preço";}
+            if (estoque == null) {validacaoEstoque = " *Estoque";}
+
+
+
+            alerta.setHeaderText(null);
+            alerta.setContentText(validacaoNome + validacaoCategoria + validacaoPreco + validacaoEstoque);
+            alerta.showAndWait();
+        }
+        else{
+            Produto produto = new Produto(nome, categoria,preco,estoque);
+            ProdutoDataSource.getInstanciaProduto().adicionarProduto(produto);
+            limparCamposFormulario();
+        }
 
 
     }
@@ -121,7 +171,7 @@ public class ProdutosScreen extends VBox {
         campoNome.clear();
         campoPreco.clear();
         campoEstoque.clear();
-        comboBoxCategoria.setValue(null);
+        this.comboBoxCategoria.setValue(null);
     }
 
     private VBox construirTabela() {
@@ -158,7 +208,7 @@ public class ProdutosScreen extends VBox {
 
     private void adicionarColunasTabela() {
         adicionarColuna("Nome", "nomeProduto", "CENTER-LEFT", true);
-        adicionarColuna("Preço", "precoProduto", "CENTER", false);
+        adicionarColunasPreco();
         adicionarColuna("Estoque", "estoqueProduto", "CENTER", false);
         adicionarColunaCategoria();
         adicionarColunaAcoes();
@@ -172,6 +222,14 @@ public class ProdutosScreen extends VBox {
         tabelaProdutos.getColumns().add(coluna);
     }
 
+    private void adicionarColunasPreco(){
+        TableColumn<Produto, String> colunaPreco = new TableColumn<>("Preço");
+        NumberFormat formatador = NumberFormat.getCurrencyInstance(Locale.of("pt","BR"));
+        colunaPreco.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(formatador.format(cellData.getValue().getPrecoProduto())));
+        colunaPreco.setStyle("-fx-alignment: CENTER;");
+        tabelaProdutos.getColumns().add(colunaPreco);
+    }
+
     private void adicionarColunaCategoria(){
         TableColumn<Produto, String> colunaCategoria = new TableColumn<>("Categoria");
         colunaCategoria.setCellValueFactory( cellData -> new ReadOnlyStringWrapper(cellData.getValue().getCategoriaProduto().getDescricao()));
@@ -181,7 +239,44 @@ public class ProdutosScreen extends VBox {
     }
 
     private void adicionarColunaAcoes(){
+        TableColumn<Produto, Void> colunaAcao = new TableColumn ("Ações");
+        colunaAcao.setCellFactory(param -> new TableCell<>() {
+            private final Button botaoRemover = criarBotaoRemover();
 
+            @Override
+            protected void updateItem(Void item, boolean empty){
+                super.updateItem(item,empty);
+                setGraphic(empty ? null : botaoRemover);
+            }
+
+            private Button criarBotaoRemover() {
+                Button botao = new Button();
+                ImageView icone = new ImageView(new Image(getClass().getResourceAsStream("/icons/lixeira.png")));
+                icone.setFitWidth(16);
+                icone.setFitHeight(16);
+                botao.setGraphic(icone);
+                botao.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+                botao.setOnAction(event -> removerProduto(getIndex()));
+                return botao;
+            }
+        });
+        colunaAcao.setStyle("-fx-alignment: CENTER;");
+        tabelaProdutos.getColumns().add(colunaAcao);
+
+    }
+
+    private void removerProduto(int index){
+        Produto produto = tabelaProdutos.getItems().get(index);
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Remover Produto");
+        alerta.setHeaderText("Deseja realmente remover o produto?");
+        alerta.setContentText(produto.getNomeProduto());
+
+        alerta.showAndWait().ifPresent(resposta -> {
+            if (resposta == ButtonType.OK) {
+                ProdutoDataSource.getInstanciaProduto().removerProduto(produto);
+            }
+        });
     }
 
     private void popularTabela() {
