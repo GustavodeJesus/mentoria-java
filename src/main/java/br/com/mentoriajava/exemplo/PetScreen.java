@@ -313,7 +313,7 @@ public class PetScreen extends VBox {
     }
 
     /**
-     * Atualiza a tabela com os pets do DataSource.
+     * Atualiza a tabela com os pet do DataSource.
      */
     private void popularTabela() {
         tabelaPets.setItems(PetDataSource.getInstancia().getListaDePets());
