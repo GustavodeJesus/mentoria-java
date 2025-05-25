@@ -187,7 +187,7 @@ public class PetScreen extends VBox {
     }
 
     /**
-     * Constrói a tabela de visualização dos pets cadastrados com colunas e ações.
+     * Constrói a tabela de visualização dos pet cadastrados com colunas e ações.
      */
     private VBox construirTabela() {
         VBox caixaTabela = new VBox(10);
@@ -296,7 +296,7 @@ public class PetScreen extends VBox {
     }
 
     /**
-     * Remove o pets da linha informada com confirmação do usuário.
+     * Remove o pet da linha informada com confirmação do usuário.
      */
     private void removerPet(int index) {
         Pet pet = tabelaPets.getItems().get(index);
