@@ -1,26 +1,22 @@
 package br.com.mentoriajava.clientes;
-import br.com.mentoriajava.database.ClienteDataSource;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.StringConverter;
-import javax.swing.tree.DefaultTreeCellEditor;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -231,4 +227,31 @@ public class ClientesScreen extends VBox {
             );
         });
     }
+
+    private void adicionarColunasTabela() {
+        adicionarColuna("Nome", "nome", "CENTER-LEFT", true);
+        adicionarColuna("CPF", "cpf", "CENTER-LEFT", true);
+        adicionarColuna("Telefone", "telefone", "CENTER-LEFT", true);
+        adicionarColuna("Logradouro", "logradouro", "CENTER-LEFT", true);
+        adicionarColuna("Numero", "numero", "CENTER-LEFT", true);
+        adicionarColuna("Complemento", "complemento", "CENTER-LEFT", true);
+        adicionarColuna("Bairro", "bairro", "CENTER-LEFT", true);
+        adicionarColuna("Pais", "pais", "CENTER-LEFT", true);
+        adicionarColuna("Estado", "estado", "CENTER-LEFT", true);
+        adicionarColuna("Cidade", "cidade", "CENTER-LEFT", true);
+        adicionarColuna("CEP", "cep", "CENTER-LEFT", true);
+        adicionarColuna("E-mail", "email", "CENTER-LEFT", true);
+        adicionarColuna("Status", "status", "CENTER-LEFT", true);
+        adicionarColuna("Data Nascimento", "nascimento", "CENTER-LEFT", true);
+
+    }
+
+    private void adicionarColuna(String titulo, String propriedade, String alinhamento, boolean negrito){
+        TableColumn<Cliente, String> coluna = new TableColumn<>(titulo);
+        coluna.setCellValueFactory(new PropertyValueFactory<>(propriedade));
+        coluna.setStyle("-fx-alignment: " + alinhamento + ";" + (negrito ? " -fx-font-weight: bold;" : ""));
+        tabelaClientes.getColumns().add(coluna);
+    }
+
+
 }
