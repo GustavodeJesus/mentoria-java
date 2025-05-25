@@ -47,7 +47,7 @@ public class PedidoApp extends Application {
         estadoTextField.setPromptText("Digite seu estado aqui!");
 
         TextField cidadeTextField = new TextField();
-        cidadeTextField.setPromptText("Digite sea cidade aqui!");
+        cidadeTextField.setPromptText("Digite seu cidade aqui!");
 
         TextField cepTextField = new TextField();
         cepTextField.setPromptText("Digite seu CEP aqui!");
@@ -105,8 +105,7 @@ public class PedidoApp extends Application {
                     dataNascimentoDatePicker.getValue(),
                     telefoneTextField.getText(),
                     emailTextField.getText(),
-                    StatusCivilEnum.SOLTEIRO,
-                    0
+                    StatusCivilEnum.SOLTEIRO
             );
 
             dadosCadastrados.setText(

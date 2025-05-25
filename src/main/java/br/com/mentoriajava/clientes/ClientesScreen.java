@@ -1,5 +1,8 @@
 package br.com.mentoriajava.clientes;
-
+import br.com.mentoriajava.database.ClienteDataSource;
+import br.com.mentoriajava.clientes.StatusCivilEnum;
+import br.com.mentoriajava.base.Endereco;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -35,11 +38,12 @@ public class ClientesScreen extends VBox {
     private final TextField campoCEP = new TextField();
     private final DatePicker campoDataNascimento = new DatePicker();
     private final TextField campoEmail = new TextField();
-    private final ComboBox<String> comboStatusCivil = new ComboBox<>();
+    private final ComboBox<StatusCivilEnum> comboStatusCivil = new ComboBox<>();
     private final TableView<Cliente> tabelaClientes = new TableView<>();
 
     public ClientesScreen() {
         configurarLayoutPrincipal();
+        popularTabela();
     }
 
     private void configurarLayoutPrincipal() {
@@ -94,7 +98,7 @@ public class ClientesScreen extends VBox {
         campoEmail.setPromptText("E-mail");
         campoDataNascimento.setPromptText("Data de Nascimento");
         campoDataNascimento.setConverter(criarConversorData());
-        comboStatusCivil.getItems().addAll("Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)");
+        comboStatusCivil.getItems().addAll(StatusCivilEnum.values());
         comboStatusCivil.setPromptText("Status Civil");
 
         grid.add(new Label("Nome:*"), 0, 0);
@@ -171,7 +175,7 @@ public class ClientesScreen extends VBox {
         String cidade = campoCidade.getText();
         String cep = campoCEP.getText();
         String email = campoEmail.getText();
-        String status = comboStatusCivil.getValue();
+        StatusCivilEnum status = comboStatusCivil.getValue();
         LocalDate nascimento = campoDataNascimento.getValue();
 
         if (nome.isEmpty() ||
@@ -187,7 +191,7 @@ public class ClientesScreen extends VBox {
                 cep == null ||
                 nascimento == null ||
                 email.isEmpty() ||
-                status.isEmpty()) {
+                status == null) {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
             alerta.setTitle("Campos obrigatórios");
             alerta.setHeaderText(null);
@@ -195,6 +199,11 @@ public class ClientesScreen extends VBox {
             alerta.showAndWait();
             return;
         }
+
+        Endereco novoEndereco = new Endereco(logradouro, numero, complemento, bairro, pais, estado, cidade, cep);
+        Cliente novoCliente = new Cliente(cpf, nome, novoEndereco, nascimento, telefone, email, status);
+
+        // TODO: incluir limparCamposFormularios
 
     }
 
@@ -204,6 +213,7 @@ public class ClientesScreen extends VBox {
         caixaTabela.setPadding(new Insets(15));
 
         configurarTabela();
+        adicionarColunasTabela();
 
         Label titulo = new Label("Clientes Cadastrados");
         titulo.setFont(Font.font("System", javafx.scene.text.FontWeight.BOLD, 16));
@@ -232,8 +242,9 @@ public class ClientesScreen extends VBox {
         adicionarColuna("Nome", "nome", "CENTER-LEFT", true);
         adicionarColuna("CPF", "cpf", "CENTER-LEFT", true);
         adicionarColuna("Telefone", "telefone", "CENTER-LEFT", true);
-        adicionarColuna("Logradouro", "logradouro", "CENTER-LEFT", true);
-        adicionarColuna("Numero", "numero", "CENTER-LEFT", true);
+        //adicionarColuna("Logradouro", "logradouro", "CENTER-LEFT", true);
+        adicionarColunaLogradouro();
+        adicionarColunaNumero();
         adicionarColuna("Complemento", "complemento", "CENTER-LEFT", true);
         adicionarColuna("Bairro", "bairro", "CENTER-LEFT", true);
         adicionarColuna("Pais", "pais", "CENTER-LEFT", true);
@@ -253,5 +264,29 @@ public class ClientesScreen extends VBox {
         tabelaClientes.getColumns().add(coluna);
     }
 
+    private void adicionarColunaLogradouro(){
+        TableColumn<Cliente, String> colunaLogradouro = new TableColumn<>("Logradouto");
+        colunaLogradouro.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getEndereco().getLogradouro()));
+        colunaLogradouro.setStyle("-fx-alignment: CENTER-LEFT");
+
+        tabelaClientes.getColumns().add(colunaLogradouro);
+
+    }
+
+    private void adicionarColunaNumero(){
+        TableColumn<Cliente, String> colunaNumero = new TableColumn<>("Numero");
+        colunaNumero.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getEndereco().getNumero()));
+        colunaNumero.setStyle("-fx-alignment: CENTER-LEFT");
+
+        tabelaClientes.getColumns().add(colunaNumero);
+    }
+
+    // TODO: incluir adicionarColunaNascimentoFormatada
+    // TODO: incluir adicionarColunaAcoes
+    // TODO: incluir RemoverPets
+
+    private void popularTabela() {
+        tabelaClientes.setItems(ClienteDataSource.getInstancia().getListaDeClientes());
+    }
 
 }
