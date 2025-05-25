@@ -296,7 +296,7 @@ public class PetScreen extends VBox {
     }
 
     /**
-     * Remove o pet da linha informada com confirmação do usuário.
+     * Remove o pets da linha informada com confirmação do usuário.
      */
     private void removerPet(int index) {
         Pet pet = tabelaPets.getItems().get(index);
@@ -313,7 +313,7 @@ public class PetScreen extends VBox {
     }
 
     /**
-     * Atualiza a tabela com os pet do DataSource.
+     * Atualiza a tabela com os pets do DataSource.
      */
     private void popularTabela() {
         tabelaPets.setItems(PetDataSource.getInstancia().getListaDePets());
