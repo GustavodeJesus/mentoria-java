@@ -205,7 +205,7 @@ public class PetScreen extends VBox {
     }
 
     /**
-     * Aponta a tabela para a lista de Vendedores observável.
+     * Aponta a tabela para a lista de Pets observável.
      */
     private void configurarTabela() {
         tabelaPets.setItems(PetDataSource.getInstancia().getListaDePets());
@@ -296,7 +296,7 @@ public class PetScreen extends VBox {
     }
 
     /**
-     * Remove o Vendedor da linha informada com confirmação do usuário.
+     * Remove o Pets da linha informada com confirmação do usuário.
      */
     private void removerPet(int index) {
         Pet pet = tabelaPets.getItems().get(index);
@@ -313,7 +313,7 @@ public class PetScreen extends VBox {
     }
 
     /**
-     * Atualiza a tabela com os Vendedores do DataSource.
+     * Atualiza a tabela com os Pets do DataSource.
      */
     private void popularTabela() {
         tabelaPets.setItems(PetDataSource.getInstancia().getListaDePets());
