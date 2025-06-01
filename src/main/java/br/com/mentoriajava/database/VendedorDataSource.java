@@ -2,9 +2,12 @@ package br.com.mentoriajava.database;
 
 import br.com.mentoriajava.base.Endereco;
 import br.com.mentoriajava.clientes.StatusCivilEnum;
+import br.com.mentoriajava.exemplo.Pet;
 import br.com.mentoriajava.vendedores.Vendedor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.time.LocalDate;
 
@@ -85,7 +88,7 @@ public class VendedorDataSource {
         this.listaVendedores.add(vendedor);
     }
 
-    public void removerVendedor(Vendedor vendedor){
-        this.listaVendedores.remove(vendedor);
+    public void removerVendedor(Vendedor vendedor) {
+        listaVendedores.remove(vendedor);
     }
 }

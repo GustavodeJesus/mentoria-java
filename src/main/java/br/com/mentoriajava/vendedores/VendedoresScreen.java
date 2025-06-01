@@ -10,8 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -37,13 +37,14 @@ public class VendedoresScreen extends VBox {
     private final DatePicker campoDataNascimento = new DatePicker();
     private final TextField campoEmail = new TextField();
     private final ComboBox<StatusCivilEnum> comboStatusCivil = new ComboBox<>();
-    private final TableView<Vendedor> tabelaVendedores = new TableView<>();
     private final TextField campoSetor = new TextField();
     private final TextField campoCodigoVendedor = new TextField();
     private final ComboBox<StatusVendedorEnum> comboStatusVendedor = new ComboBox<>();
+    private BorderPane root;
 
-    public VendedoresScreen() {
+    public VendedoresScreen(BorderPane root) {
         configurarLayoutPrincipal();
+        this.root = root;
         /*popularTabela();*/
     }
 
@@ -69,8 +70,9 @@ public class VendedoresScreen extends VBox {
 
         GridPane grid = configurarGridFormulario();
         Button botaoCadastrar = criarBotaoCadastrar();
+        Button botaoCadastrados = criarBotaoVendedoresCadastrados();
 
-        HBox boxBotao = new HBox(botaoCadastrar);
+        HBox boxBotao = new HBox(15, botaoCadastrar, botaoCadastrados);
         boxBotao.setAlignment(Pos.CENTER_RIGHT);
         boxBotao.setPadding(new Insets(5));
 
@@ -183,6 +185,17 @@ public class VendedoresScreen extends VBox {
         return botaoCadastrar;
     }
 
+    private Button criarBotaoVendedoresCadastrados() {
+        Button botaoCadastrados = new Button("Vendedores Cadastrados");
+        botaoCadastrados.setStyle("-fx-background-color: #008000; -fx-text-fill: white; -fx-padding: 10 20; -fx-font-weight: bold; -fx-background-radius: 6;");
+        botaoCadastrados.setOnAction(event -> actionMudarTelaParaListagem());
+        return botaoCadastrados;
+    }
+
+    private void actionMudarTelaParaListagem (){
+        root.setCenter(new ListagemVendedoresScreen(root));
+    }
+
     private void cadastrarVendedor() {
         String nome = campoNome.getText();
         String cpf = campoCpf.getText();
@@ -249,5 +262,6 @@ public class VendedoresScreen extends VBox {
                 codigoVendedor);
 
         VendedorDataSource.getInstancia().adicionarVendedor(novoVendedor);
+        actionMudarTelaParaListagem();
     }
 }
