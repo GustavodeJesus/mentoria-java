@@ -7,13 +7,17 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -242,18 +246,18 @@ public class ClientesScreen extends VBox {
         adicionarColuna("Nome", "nome", "CENTER-LEFT", true);
         adicionarColuna("CPF", "cpf", "CENTER-LEFT", true);
         adicionarColuna("Telefone", "telefone", "CENTER-LEFT", true);
-        //adicionarColuna("Logradouro", "logradouro", "CENTER-LEFT", true);
         adicionarColunaLogradouro();
         adicionarColunaNumero();
-        adicionarColuna("Complemento", "complemento", "CENTER-LEFT", true);
-        adicionarColuna("Bairro", "bairro", "CENTER-LEFT", true);
-        adicionarColuna("Pais", "pais", "CENTER-LEFT", true);
-        adicionarColuna("Estado", "estado", "CENTER-LEFT", true);
-        adicionarColuna("Cidade", "cidade", "CENTER-LEFT", true);
-        adicionarColuna("CEP", "cep", "CENTER-LEFT", true);
+        adicionarColunaComplemento();
+        adicionarColunaBairro();
+        adicionarColunaPais();
+        adicionarColunaEstado();
+        adicionarColunaCidade();
+        adicionarColunaCep();
         adicionarColuna("E-mail", "email", "CENTER-LEFT", true);
-        adicionarColuna("Status", "status", "CENTER-LEFT", true);
-        adicionarColuna("Data Nascimento", "nascimento", "CENTER-LEFT", true);
+        adicionarColunaStatusCivil();
+        adicionarColunaNascimentoFormatada();
+        adicionarColunaAcoes();
 
     }
 
@@ -281,9 +285,118 @@ public class ClientesScreen extends VBox {
         tabelaClientes.getColumns().add(colunaNumero);
     }
 
-    // TODO: incluir adicionarColunaNascimentoFormatada
-    // TODO: incluir adicionarColunaAcoes
-    // TODO: incluir RemoverPets
+    private void adicionarColunaComplemento() {
+        TableColumn<Cliente, String> colunaComplemento = new TableColumn<>("Complemento");
+        colunaComplemento.setCellValueFactory(cellData -> new ReadOnlyStringWrapper((cellData.getValue().getEndereco().getComplemento())));
+        colunaComplemento.setStyle("-fx-alignment: CENTER-LEFT");
+
+        tabelaClientes.getColumns().add(colunaComplemento);
+    }
+
+    private void adicionarColunaBairro() {
+        TableColumn<Cliente, String> colunaBairro = new TableColumn<>("Bairro");
+        colunaBairro.setCellValueFactory(cellData -> new ReadOnlyStringWrapper((cellData.getValue().getEndereco().getBairro())));
+        colunaBairro.setStyle("-fx-alignment: CENTER-LEFT");
+
+        tabelaClientes.getColumns().add(colunaBairro);
+    }
+
+    private void adicionarColunaPais() {
+        TableColumn<Cliente, String> colunaPais = new TableColumn<>("País");
+        colunaPais.setCellValueFactory(cellData -> new ReadOnlyStringWrapper((cellData.getValue().getEndereco().getPais())));
+        colunaPais.setStyle("-fx-alignment: CENTER-LEFT");
+
+        tabelaClientes.getColumns().add(colunaPais);
+    }
+
+    private void adicionarColunaEstado() {
+        TableColumn<Cliente, String> colunaEstado = new TableColumn<>("Estado");
+        colunaEstado.setCellValueFactory(cellData -> new ReadOnlyStringWrapper((cellData.getValue().getEndereco().getEstado())));
+        colunaEstado.setStyle("-fx-alignment: CENTER-LEFT");
+
+        tabelaClientes.getColumns().add(colunaEstado);
+    }
+
+    private void adicionarColunaCidade() {
+        TableColumn<Cliente, String> colunaCidade = new TableColumn<>("Cidade");
+        colunaCidade.setCellValueFactory(cellData -> new ReadOnlyStringWrapper((cellData.getValue().getEndereco().getCidade())));
+        colunaCidade.setStyle("-fx-alignment: CENTER-LEFT");
+
+        tabelaClientes.getColumns().add(colunaCidade);
+    }
+
+    private void adicionarColunaCep() {
+        TableColumn<Cliente, String> colunaCep = new TableColumn<>("CEP");
+        colunaCep.setCellValueFactory(cellData -> new ReadOnlyStringWrapper((cellData.getValue().getEndereco().getCep())));
+        colunaCep.setStyle("-fx-alignment: CENTER-LEFT");
+
+        tabelaClientes.getColumns().add(colunaCep);
+    }
+
+    private void adicionarColunaNascimentoFormatada(){
+        TableColumn<Cliente, LocalDate> colunaNascimento = new TableColumn<>("Data Nascimento");
+        colunaNascimento.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
+        colunaNascimento.setStyle("-fx-alignment: CENTER;");
+        colunaNascimento.setCellFactory(column -> new TableCell<>(){
+            private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            @Override
+            protected void updateItem(LocalDate date, boolean empty){
+                super.updateItem(date, empty);
+                setText(empty || date == null ? null : formatter.format(date));
+            }
+        });
+        tabelaClientes.getColumns().add(colunaNascimento);
+    }
+
+    private void adicionarColunaAcoes(){
+        TableColumn<Cliente, Void> colunaAcao = new TableColumn<>("Ações");
+        colunaAcao.setCellFactory(param -> new TableCell<>() {
+            private final Button botaoRemover = criarBotaoRemover();
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : botaoRemover);
+            }
+
+            private Button criarBotaoRemover(){
+                Button botao = new Button();
+                ImageView icone = new ImageView(new Image(getClass().getResourceAsStream("/icons/lixeira.png")));
+                icone.setFitWidth(16);
+                icone.setFitHeight(16);
+                botao.setGraphic(icone);
+                botao.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+                botao.setOnAction(event -> removerCliente(getIndex()));
+
+                return botao;
+            }
+        });
+
+        colunaAcao.setStyle("-fx-alignment: CENTER;");
+        tabelaClientes.getColumns().add(colunaAcao);
+    }
+
+    private void adicionarColunaStatusCivil() {
+        TableColumn<Cliente, String> colunaStatusCivil = new TableColumn<>("Status");
+        colunaStatusCivil.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getStatusCivil().toString()));
+        colunaStatusCivil.setStyle("-fx-alignment: CENTER-LEFT;");
+        tabelaClientes.getColumns().add(colunaStatusCivil);
+    }
+
+    private void removerCliente(int index) {
+        Cliente cliente = tabelaClientes.getItems().get(index);
+        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacao.setTitle("Remover Cliente");
+        confirmacao.setHeaderText("Deseja realmente remover o cliente?");
+        confirmacao.setContentText(cliente.getNome());
+
+        confirmacao.showAndWait().ifPresent(resposta -> {
+            if (resposta == ButtonType.OK) {
+                ClienteDataSource.getInstancia().removerCliente(cliente);
+            }
+        });
+    }
 
     private void popularTabela() {
         tabelaClientes.setItems(ClienteDataSource.getInstancia().getListaDeClientes());
