@@ -26,14 +26,14 @@ public class Cliente extends Pessoa {
             LocalDate dataNascimento,
             String telefone,
             String email,
-            StatusCivilEnum statusCivil,
-            int numeroPedidos
+            StatusCivilEnum statusCivil
     ){
         super(cpf, nome, endereco, dataNascimento, telefone, email, statusCivil);
         this.codigoCliente = UUID.randomUUID().toString();
-        this.numeroPedidos = numeroPedidos;
+        this.numeroPedidos = 0;
         this.possuiRestricoes = false;
         this.dataCadastro = LocalDate.now();
+
     }
 
     public void atualizarNumeroDePedidos(){
