@@ -206,9 +206,27 @@ public class ClientesScreen extends VBox {
 
         Endereco novoEndereco = new Endereco(logradouro, numero, complemento, bairro, pais, estado, cidade, cep);
         Cliente novoCliente = new Cliente(cpf, nome, novoEndereco, nascimento, telefone, email, status);
+        ClienteDataSource.getInstancia().adiconarCliente(novoCliente);
 
-        // TODO: incluir limparCamposFormularios
+        limparCamposFormulario();
 
+    }
+
+    private void limparCamposFormulario(){
+        campoNome.clear();
+        campoCpf.clear ();
+        campoTelefone.clear();
+        campoLogradouro.clear();
+        campoNome.clear();
+        campoComplemento.clear();
+        campoBairro.clear();
+        campoPais.clear();
+        campoEstado.clear();
+        campoCidade.clear();
+        campoCEP.clear();
+        campoEmail.clear();
+        campoDataNascimento.setValue(null);
+        comboStatusCivil.setValue(null);
     }
 
     private VBox construirTabela() {
