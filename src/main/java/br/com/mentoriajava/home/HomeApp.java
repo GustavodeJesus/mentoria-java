@@ -48,7 +48,7 @@ public class HomeApp extends Application {
         ToggleButton btnCupons = createSidebarItem("Cupons", "icons/cupons.png", new CuponsScreen());
         ToggleButton btnFormaPagamento = createSidebarItem("Forma de Pagamento", "icons/formapagamento.png", new FormaPagamentoScreen());
         ToggleButton btnPedidos = createSidebarItem("Pedido", "icons/pedidos.png", new PedidosScreen());
-        ToggleButton btnVendedores = createSidebarItem("Vendedores", "icons/vendedores.png", new VendedoresScreen());
+        ToggleButton btnVendedores = createSidebarItem("Vendedores", "icons/vendedores.png", new VendedoresScreen(root));
         ToggleButton btnProdutos = createSidebarItem("Produtos", "icons/produtos.png", new ProdutosScreen());
         ToggleButton btnExemplo = createSidebarItem("Exemplo", "icons/info.png", new PetScreen());
 

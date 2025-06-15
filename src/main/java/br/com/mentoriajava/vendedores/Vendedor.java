@@ -30,6 +30,10 @@ public class Vendedor extends Pessoa {
         this.codigoVendedor = codigoVendedor;
     }
 
+    public Vendedor() {
+
+    }
+
     public String getCodigoVendedor() {
         return codigoVendedor;
     }
