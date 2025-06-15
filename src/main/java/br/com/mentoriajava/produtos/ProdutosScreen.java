@@ -41,7 +41,7 @@ public class ProdutosScreen extends VBox {
     private void configurarLayout() {
         setSpacing(20);
         setPadding(new Insets(20));
-        Label title = new Label("Tela de Produtos");
+        Label title = new Label("Cadastro de Produtos");
         title.setFont(Font.font("System", javafx.scene.text.FontWeight.BOLD, 20));
         title.setStyle("-fx-text-fill: #1f2937;");
         setStyle("-fx-background-color: #ffffff;");
