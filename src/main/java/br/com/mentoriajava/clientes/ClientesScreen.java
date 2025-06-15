@@ -201,15 +201,20 @@ public class ClientesScreen extends VBox {
             alerta.setHeaderText(null);
             alerta.setContentText("Por favor, preencha todos os campos antes de cadastrar o cliente.");
             alerta.showAndWait();
-            return;
         }
 
-        Endereco novoEndereco = new Endereco(logradouro, numero, complemento, bairro, pais, estado, cidade, cep);
-        Cliente novoCliente = new Cliente(cpf, nome, novoEndereco, nascimento, telefone, email, status);
-        ClienteDataSource.getInstancia().adiconarCliente(novoCliente);
+        else {
+            Endereco novoEndereco = new Endereco(logradouro, numero, complemento, bairro, pais, estado, cidade, cep);
+            Cliente novoCliente = new Cliente(cpf, nome, novoEndereco, nascimento, telefone, email, status);
+            ClienteDataSource.getInstancia().adiconarCliente(novoCliente);
+            limparCamposFormulario();
 
-        limparCamposFormulario();
-
+            Alert popUp = new Alert(Alert.AlertType.INFORMATION);
+            popUp.setTitle("Cliente cadastrado!");
+            popUp.setHeaderText(null);
+            popUp.setContentText("Cliente cadastrado com sucesso!");
+            popUp.showAndWait();
+        }
     }
 
     private void limparCamposFormulario(){
