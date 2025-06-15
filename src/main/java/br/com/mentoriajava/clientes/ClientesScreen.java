@@ -215,13 +215,6 @@ public class ClientesScreen extends VBox {
             popUp.setContentText("Cliente cadastrado com sucesso!");
             popUp.showAndWait();
         }
-
-        Endereco novoEndereco = new Endereco(logradouro, numero, complemento, bairro, pais, estado, cidade, cep);
-        Cliente novoCliente = new Cliente(cpf, nome, novoEndereco, nascimento, telefone, email, status);
-        ClienteDataSource.getInstancia().adiconarCliente(novoCliente);
-
-
-
     }
 
     private void limparCamposFormulario(){
