@@ -162,6 +162,12 @@ public class ProdutosScreen extends VBox {
             Produto produto = new Produto(nome, categoria,preco,estoque);
             ProdutoDataSource.getInstanciaProduto().adicionarProduto(produto);
             limparCamposFormulario();
+
+            Alert popUp = new Alert(Alert.AlertType.INFORMATION);
+            popUp.setTitle(null);
+            popUp.setHeaderText(null);
+            popUp.setContentText("Produto cadastrado com sucesso!");
+            popUp.showAndWait();
         }
 
 
